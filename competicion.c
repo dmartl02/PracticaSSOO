@@ -22,6 +22,11 @@
 #define NUMATLETAS 10
 #define NUMTARIMAS 2
 
+/*Funciones que emplearemos*/
+void writeLogMessage (char *id,char *msg);
+int generaAleatorio(int max, int min)
+
+
 /*Variables globales*/
 pthread_t juez;
 int numeroAtleta;
@@ -32,6 +37,7 @@ int colaAtletas[10];
 int puntuacionGanador;
 char id[10];
 char msg[100];
+
 
 
 
@@ -52,8 +58,6 @@ struct atletas *punteroAtletas;
 
 
 struct tarimas {
-
-	//pthread_t caja; /*hilo del box*/
 	int id;
 	int correcto;
 	int indumentaria;
@@ -62,3 +66,39 @@ struct tarimas {
 	int descansa; /*Cada 2 atletas*/
 	int agua;
 };
+
+//Almacenamos todas las tarimas
+struct tarimas *punteroTarimas
+
+
+
+
+
+
+
+
+
+
+
+
+void writeLogMessage(char *id,char *msg) {
+	/*Calculamos la hora actual*/
+	time_t now = time(0);
+	struct tm *tlocal = localtime(&now);
+	char stnow[19];
+	strftime(stnow,19,"%d %m %y %H: %M: %S",tlocal);
+	
+	/*Escribimos en el log*/
+	logFile = fopen(logFileName, "a");
+	fprintf(logFile, "[%s] %s: %s\n", stnow, id, msg);
+	fclose(logFile);
+		
+}
+
+
+
+
+int generaAleatorio(int max, int min) {
+	srand(time(NULL));
+	int numeroAleatorio = rand()%((max+1)-min)+min;
+	return numeroAleatorio;
