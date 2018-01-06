@@ -24,11 +24,13 @@
 
 //Funciones que emplearemos
 void writeLogMessage (char *id,char *msg);
-int generaAleatorio(int max, int min)
+int generaAleatorio(int max, int min);
+void *accionesTarima(void* manejadora);
+void *accionesAtleta(void* manejadora);
+
 
 
 //Variables globales
-pthread_t juez;
 int numeroAtleta;
 int competicion;
 int contador;
@@ -69,7 +71,7 @@ struct tarimas *punteroTarimas
 
 
 //Semaforos
-pthread_mutex_t controladorColaTarima; //No hay dos en la msia posicion
+pthread_mutex_t controladorColaTarima; //No hay dos en la misma posicion
 pthread_mutex_t controladorTarima; //No hay dos en la misma tarima
 pthread_mutex_t controladorLog; //No hay dos escribiendo en el fichero
 pthread_mutex_t pulso;
@@ -80,7 +82,36 @@ pthread_mutex_t controladorJuez;
 
 
 
+void* accionesTarima(void* manejadora) {
+	/*	1. Primer atleta el maximo tiempo, si no de otra tarima
+		2. Cambiar flag
+		3. Actuacón atleta
+		4. Logear hora inicio levantamiento
+		5. Dormir tiempo de levantamiento
+		6. Agua? y cambiar flag
+		7. Logear hora fin levantamiento
+		8. Logear puntuacion
+		9. Cambiar flag ha_Competido
+		10. Contador atletas +1
+		11. Comprobar descanso jueces
+		12. Paso 1
+	*/
 
+}
+
+
+void* accionesAtleta(void* manejadora) {
+	/*	1. Logear hora y tarima
+		2. Problemas atleta
+			a) No levanta, fin de hilo y libera espacio cola
+			b) Dormir 3 segs y volver a 2
+		3. Si coompite esperamos a que termine
+		4. Logear hora de fin (y puntuación?)
+		5. Final hilo
+	*/
+
+
+}
 
 
 
