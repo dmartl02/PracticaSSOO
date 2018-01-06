@@ -22,12 +22,12 @@
 #define NUMATLETAS 10
 #define NUMTARIMAS 2
 
-/*Funciones que emplearemos*/
+//Funciones que emplearemos
 void writeLogMessage (char *id,char *msg);
 int generaAleatorio(int max, int min)
 
 
-/*Variables globales*/
+//Variables globales
 pthread_t juez;
 int numeroAtleta;
 int competicion;
@@ -39,9 +39,7 @@ char id[10];
 char msg[100];
 
 
-
-
-/*Structs*/
+//Structs
 struct atletas {
 	int indispuesto; 
 	int id; 
@@ -51,7 +49,6 @@ struct atletas {
 	pthread_t atletaHilo;
 	int puntuacion;
 };
-
 
 //Almacenamos todos los atletas
 struct atletas *punteroAtletas; 
@@ -63,13 +60,20 @@ struct tarimas {
 	int indumentaria;
 	int nulo;
 	int ocupada;/
-	int descansa; /*Cada 2 atletas*/
+	int descansa; //Cada 2 atletas
 	int agua;
 };
 
 //Almacenamos todas las tarimas
 struct tarimas *punteroTarimas
 
+
+//Semaforos
+pthread_mutex_t controladorColaTarima; //No hay dos en la msia posicion
+pthread_mutex_t controladorTarima; //No hay dos en la misma tarima
+pthread_mutex_t controladorLog; //No hay dos escribiendo en el fichero
+pthread_mutex_t pulso;
+pthread_mutex_t controladorJuez;
 
 
 
