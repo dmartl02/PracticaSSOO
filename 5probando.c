@@ -200,35 +200,58 @@ void *AccionesAtleta(void *arg) {
 }
 
 void *AccionesTarima(void *arg) {
-	int idTarima = *(int *)arg;
-	int atletaActual, atletasAtendidos = 0;
-	int i;
-	printf("AccionesTarima INICIO tarima %d, ocupada %d\n", punteroTarimas[0].id, punteroTarimas[0].ocupada);
-	printf("AccionesTarima INICIO tarima %d, ocupada %d\n", punteroTarimas[1].id, punteroTarimas[1].ocupada);
-	do {
-		if (colaTarimas[0] != 50) {
-			pthread_mutex_lock(&entradaTarima);
-			atletaActual = colaTarimas[0];
-			for(i = 1; i < ATLETAS; i++){
-				colaTarimas[i-1] = colaTarimas[i];  //Hacemos espacio en la colaTarimas
-			}
-			colaTarimas[9] = 50;
-			pthread_mutex_unlock(&entradaTarima);
-			punteroAtletas[atletaActual].ha_Competido == 1;
-			punteroTarimas[idTarima].ocupada = 1;
-			//Codigo especifico para los atletas
-			if (atletaActual != 50) {
-				printf("buenas gente soy %d\n", punteroAtletas[atletaActual].id);
-				if (++atletasAtendidos == 4) {
-					sleep(10);
-				}
-			}
-			printf("entro dowhile e if, soy %d\n", idTarima);
-		}
-		printf("me voy a dormir, soy la tarima %d\n", idTarima);
-		sleep(2);  //Espera activa del hilo tarima para no sobrecargar el procesador
-	} while(punteroTarimas[idTarima].ocupada == 0);
-	printf("accionestarima, mi id = %d, ocupado = %d\n", idTarima, punteroTarimas[idTarima].ocupada);
+    int idTarima = *(int *)arg;
+    int atletaActual, atletasAtendidos = 0;
+    int porcentajeAleatorio, duermeAleatorio;
+    int i;
+    printf("AccionesTarima INICIO tarima %d, ocupada %d\n", punteroTarimas[0].id, punteroTarimas[0].ocupada);
+    printf("AccionesTarima INICIO tarima %d, ocupada %d\n", punteroTarimas[1].id, punteroTarimas[1].ocupada);
+    do {
+        if (colaTarimas[0] != 50) {
+            pthread_mutex_lock(&entradaTarima);
+            atletaActual = colaTarimas[0];
+            for(i = 1; i < ATLETAS; i++){
+                colaTarimas[i-1] = colaTarimas[i];  //Hacemos espacio en la colaTarimas
+            }
+            colaTarimas[9] = 50;
+            pthread_mutex_unlock(&entradaTarima);
+            punteroAtletas[atletaActual].ha_Competido == 1;
+            punteroTarimas[idTarima].ocupada = 1;
+            //Codigo especifico para los atletas
+            if (atletaActual != 50) {
+                if (++atletasAtendidos == 4) {
+                    sleep(10);
+                    atletasAtendidos = 0;
+                }
+                printf("buenas gente soy %d\n", punteroAtletas[atletaActual].id);
+                porcentajeAleatorio = generarAleatorio(1, 100);
+                if (porcentajeAleatorio <= 80) {  //movimiento valido
+                    punteroAtletas[atletaActual].puntuacion = generarAleatorio(60, 300); //si hay hueco en el podio
+
+                    pthread_mutex_lock(&escritura);
+                    sprintf(id, "atleta_%d", idAtleta);
+                    sprintf(msg, "Se retira por deshidratacion y falta de electrolitos");
+                    writeLogMessage(id, msg);
+                    pthread_mutex_unlock(&escritura);
+
+                    duermeAleatorio = generarAleatorio(2, 6);
+                    sleep(duermeAleatorio);
+                } else if (porcentajeAleatorio > 80 && porcentajeAleatorio <= 90 ) {  //movimiento nulo por indumentaria
+                    punteroAtletas[atletaActual].puntuacion = 0;
+                    duermeAleatorio = generarAleatorio(1, 4);
+                    sleep(duermeAleatorio);
+                } else {  //movimiento nulo por falta de fuerza
+                    punteroAtletas[atletaActual].puntuacion = 0;
+                    duermeAleatorio = generarAleatorio(6, 10);
+                    sleep(duermeAleatorio);
+                }
+            }
+            printf("entro dowhile e if, soy %d\n", idTarima);
+        }
+        printf("me voy a dormir, soy la tarima %d\n", idTarima);
+        sleep(2);  //Espera activa del hilo tarima para no sobrecargar el procesador
+    } while(punteroTarimas[idTarima].ocupada == 0);
+    printf("accionestarima, mi id = %d, ocupado = %d\n", idTarima, punteroTarimas[idTarima].ocupada);
 	/*int idTarima = *(int *)arg;
 	int atletaActual, i;
 	//Identificamos que tarima esta ejecutando el codigo
