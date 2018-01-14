@@ -206,7 +206,7 @@ void *AccionesAtleta(void *arg) {
 			//punteroAtletas[idAtleta].ha_Competido = 1;
 			printf("El thread ha finalizado, numero %d, mi id de hilo es %d.\n", num, idAtleta);
 			pthread_mutex_lock(&escritura);
-			punteroAtletas[idAtleta].ha_Competido = 2;
+			punteroAtletas[idAtleta-1].ha_Competido = 2;
 			sprintf(id, "atleta_%d", idAtleta);
 			sprintf(msg, "Se retira por deshidratacion y falta de electrolitos");
 			writeLogMessage(id, msg);
