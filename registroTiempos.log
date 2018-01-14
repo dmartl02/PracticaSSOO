@@ -1,38 +1,41 @@
-[14/01/18 10:54:30] Comienzo: Competicion de powerlifting
-[14/01/18 10:54:41] atleta_1: Entra en la competicion, su tarima asignada es 1
-[14/01/18 10:54:41] atleta_1: Inicio del levantamiento
-[14/01/18 10:54:42] atleta_2: Entra en la competicion, su tarima asignada es 1
-[14/01/18 10:54:42] atleta_2: Inicio del levantamiento
-[14/01/18 10:54:42] atleta_3: Entra en la competicion, su tarima asignada es 1
-[14/01/18 10:54:43] atleta_4: Entra en la competicion, su tarima asignada es 1
-[14/01/18 10:54:44] atleta_5: Entra en la competicion, su tarima asignada es 1
-[14/01/18 10:54:44] atleta_6: Entra en la competicion, su tarima asignada es 1
-[14/01/18 10:54:45] atleta_7: Entra en la competicion, su tarima asignada es 1
-[14/01/18 10:54:45] atleta_8: Entra en la competicion, su tarima asignada es 1
-[14/01/18 10:54:46] atleta_9: Entra en la competicion, su tarima asignada es 1
-[14/01/18 10:54:46] atleta_2: Fin del levantamiento, movimiento nulo por indumentaria, puntuacion = 0, tiempo = 4
-[14/01/18 10:54:46] atleta_3: Inicio del levantamiento
-[14/01/18 10:54:47] atleta_10: Entra en la competicion, su tarima asignada es 1
-[14/01/18 10:54:47] atleta_1: Fin del levantamiento, movimiento valido, puntuacion = 211, tiempo = 6
-[14/01/18 10:54:47] atleta_4: Inicio del levantamiento
-[14/01/18 10:54:50] atleta_5: Se retira por deshidratacion y falta de electrolitos
-[14/01/18 10:54:50] atleta_10: Se retira por deshidratacion y falta de electrolitos
-[14/01/18 10:54:50] atleta_4: Fin del levantamiento, movimiento nulo por indumentaria, puntuacion = 0, tiempo = 3
-[14/01/18 10:54:50] atleta_6: Inicio del levantamiento
-[14/01/18 10:54:52] atleta_3: Fin del levantamiento, movimiento valido, puntuacion = 73, tiempo = 6
-[14/01/18 10:54:52] atleta_7: Inicio del levantamiento
-[14/01/18 10:54:56] atleta_6: Fin del levantamiento, movimiento valido, puntuacion = 217, tiempo = 6
-[14/01/18 10:54:56] atleta_8: Inicio del levantamiento
-[14/01/18 10:54:58] atleta_7: Fin del levantamiento, movimiento valido, puntuacion = 245, tiempo = 6
-[14/01/18 10:54:58] atleta_9: Inicio del levantamiento
-[14/01/18 10:55:00] atleta_8: Fin del levantamiento, movimiento valido, puntuacion = 146, tiempo = 4
-[14/01/18 10:55:00] juez_1: Inicio del descanso
-[14/01/18 10:55:02] atleta_9: Fin del levantamiento, movimiento valido, puntuacion = 175, tiempo = 4
-[14/01/18 10:55:02] juez_2: Inicio del descanso
-[14/01/18 10:55:10] juez_1: Fin del descanso
-[14/01/18 10:55:12] juez_2: Fin del descanso
-[14/01/18 10:55:18] informacion: Han accedido 0 atletas a tarima1 y 0 a tarima2
-[14/01/18 10:55:18] atleta_7: Primer puesto con puntuacion = 245
-[14/01/18 10:55:18] atleta_6: Segundo puesto con puntuacion = 217
-[14/01/18 10:55:18] atleta_1: Tercer puesto con puntuacion = 211
-[14/01/18 10:55:18] Final: La competicion ha finalizado
+[14/01/18 11:30:18] Comienzo: Competicion de powerlifting
+[14/01/18 11:30:26] atleta_1: Entra en la competicion, su tarima asignada es 1
+[14/01/18 11:30:26] atleta_1: Inicio del levantamiento
+[14/01/18 11:30:27] atleta_2: Entra en la competicion, su tarima asignada es 1
+[14/01/18 11:30:27] atleta_2: Inicio del levantamiento
+[14/01/18 11:30:28] atleta_3: Entra en la competicion, su tarima asignada es 1
+[14/01/18 11:30:29] atleta_4: Entra en la competicion, su tarima asignada es 1
+[14/01/18 11:30:29] atleta_5: Entra en la competicion, su tarima asignada es 1
+[14/01/18 11:30:30] atleta_1: Fin del levantamiento, movimiento nulo por indumentaria, puntuacion = 0, tiempo = 4
+[14/01/18 11:30:30] atleta_3: Inicio del levantamiento
+[14/01/18 11:30:30] atleta_6: Entra en la competicion, su tarima asignada es 1
+[14/01/18 11:30:32] atleta_7: Entra en la competicion, su tarima asignada es 1
+[14/01/18 11:30:32] atleta_7: Se retira por deshidratacion y falta de electrolitos
+[14/01/18 11:30:32] atleta_4: Se retira por deshidratacion y falta de electrolitos
+[14/01/18 11:30:32] atleta_5: Se retira por deshidratacion y falta de electrolitos
+[14/01/18 11:30:36] atleta_2: Fin del levantamiento, movimiento nulo por falta de fuerza, puntuacion = 0, tiempo = 9
+[14/01/18 11:30:36] atleta_6: Inicio del levantamiento
+[14/01/18 11:30:36] atleta_3: Fin del levantamiento, movimiento valido, puntuacion = 113, tiempo = 6
+[14/01/18 11:30:36] atleta_8: Inicio del levantamiento
+[14/01/18 11:30:40] atleta_6: Fin del levantamiento, movimiento nulo por indumentaria, puntuacion = 0, tiempo = 4
+[14/01/18 11:30:40] atleta_9: Inicio del levantamiento
+[14/01/18 11:30:40] atleta_8: Fin del levantamiento, movimiento nulo por indumentaria, puntuacion = 0, tiempo = 4
+[14/01/18 11:30:40] atleta_10: Inicio del levantamiento
+[14/01/18 11:30:46] atleta_8: Entra en la competicion, su tarima asignada es 1
+[14/01/18 11:30:46] atleta_8: Se retira por deshidratacion y falta de electrolitos
+[14/01/18 11:30:46] atleta_9: Fin del levantamiento, movimiento valido, puntuacion = 132, tiempo = 6
+[14/01/18 11:30:46] atleta_10: Fin del levantamiento, movimiento valido, puntuacion = 132, tiempo = 6
+[14/01/18 11:30:46] juez_2: Inicio del descanso
+[14/01/18 11:30:49] atleta_9: Inicio del levantamiento
+[14/01/18 11:30:49] atleta_9: Entra en la competicion, su tarima asignada es 1
+[14/01/18 11:30:50] atleta_10: Entra en la competicion, su tarima asignada es 1
+[14/01/18 11:30:50] atleta_10: Se retira por deshidratacion y falta de electrolitos
+[14/01/18 11:30:51] atleta_9: Fin del levantamiento, movimiento valido, puntuacion = 185, tiempo = 2
+[14/01/18 11:30:51] juez_1: Inicio del descanso
+[14/01/18 11:30:56] juez_2: Fin del descanso
+[14/01/18 11:31:01] juez_1: Fin del descanso
+[14/01/18 11:31:05] informacion: Han accedido 0 atletas a tarima1 y 0 a tarima2
+[14/01/18 11:31:05] atleta_9: Primer puesto con puntuacion = 185
+[14/01/18 11:31:05] atleta_10: Segundo puesto con puntuacion = 132
+[14/01/18 11:31:05] atleta_9: Tercer puesto con puntuacion = 132
+[14/01/18 11:31:05] Final: La competicion ha finalizado
