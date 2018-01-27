@@ -27,6 +27,8 @@ int atletasAtendidosTarimas[TARIMAS];  //guardamos los atletas que han sido aten
 int colaTarimas[ATLETAS];  //almacenamos los atletas en la cola unica
 int mejoresPuntuaciones[3];
 int mejoresIds[3];
+int atletasTotalesActuales;
+int atletasCompitiendo;
 FILE *logFile;
 char *logFileName ="registroTiempos.log";
 
@@ -38,6 +40,7 @@ void *AccionesTarima(void *arg);
 void comprobarPodio(int puntuacion, int id);
 void writeLogMessage(char *id,char *msg);
 void finalizarCompeticion(int sig);
+void atletasActuales(int sig);
 int generarAleatorio(int min, int max);
 
 //STRUCTS
@@ -63,6 +66,9 @@ int main() {
 	pthread_t tarima1, tarima2;
 	int idTarima1, idTarima2;
 
+	int atletasCompitiendo=0;
+	int atletasTotalesActuales=0;
+
 	//Registramos las signal
 	if(signal(SIGUSR1, nuevoCompetidor)==SIG_ERR){
 		perror("Llamada a signal.");
@@ -73,6 +79,10 @@ int main() {
 		exit(-1);
 	}
 	if(signal(SIGINT, finalizarCompeticion)==SIG_ERR){
+		perror("Llamada a signal.");
+		exit(-1);
+	}
+	if(signal(SIGPIPE, atletasActuales)==SIG_ERR){
 		perror("Llamada a signal.");
 		exit(-1);
 	}
@@ -138,6 +148,8 @@ void nuevoCompetidor(int sig){
 	if(signal(SIGUSR2,nuevoCompetidor)==SIG_ERR){
 		exit(-1);
 	}
+	
+	atletasTotalesActuales++; //incrementamos en 1 el numero de atletas cada vez que se crea uno nuevo
 
 	pthread_mutex_lock(&entradaCompeticion);
 	if (contadorAtletas < ATLETAS) {
@@ -244,6 +256,8 @@ void *AccionesTarima(void *arg) {
 		}
 
 		//en este punto, o bien j es el atleta a tratar, o es -1, y toca esperar a que lleguen nuevos atletas
+
+		
 			
 		if (j==-1) {
 			//esperar a que lleguen nuevos atletas
@@ -251,6 +265,8 @@ void *AccionesTarima(void *arg) {
 			sleep(1);
 		} else { //proceder con accionesTarima
 			i = colaTarimas[j]-1;
+
+			atletasCompitiendo++;//Atletas en la tarima se incrementa
 
 			punteroAtletas[i].ha_Competido = 1;
 			pthread_mutex_unlock(&semaforoCola);
@@ -260,8 +276,8 @@ void *AccionesTarima(void *arg) {
 
 			//Inicio levantamiento
 			pthread_mutex_lock(&semaforoLog);
-			sprintf(id, "atleta_%d", colaTarimas[i]);
-			sprintf(msg, "Inicio del levantamiento");
+			sprintf(id, "Tarima_%d", idTarima);
+			sprintf(msg, "atleta_%d inicio del levantamiento", colaTarimas[i]);
 			writeLogMessage(id, msg);
 			pthread_mutex_unlock(&semaforoLog);
 
@@ -272,8 +288,8 @@ void *AccionesTarima(void *arg) {
 				sleep(duermeAleatorio);
 
 				pthread_mutex_lock(&semaforoLog);
-				sprintf(id, "atleta_%d", colaTarimas[i]);
-				sprintf(msg, "Fin del levantamiento, movimiento valido, puntuacion = %d, tiempo = %d", puntuacionAleatorio, duermeAleatorio);
+				sprintf(id, "Tarima_%d", idTarima);
+				sprintf(msg, "atleta_%d fin del levantamiento, movimiento valido, puntuacion = %d, tiempo = %d", colaTarimas[i], puntuacionAleatorio, duermeAleatorio);
 				writeLogMessage(id, msg);
 				pthread_mutex_unlock(&semaforoLog);
 
@@ -307,6 +323,8 @@ void *AccionesTarima(void *arg) {
 
 			atletasAtendidosTarimas[idTarima-1]++;
 
+			atletasCompitiendo--;//Atletas en la tarima se decrementa
+
 			punteroAtletas[i].ha_Competido = 2;
 
 			//Vemos si tiene que ir a beber agua
@@ -334,6 +352,8 @@ void *AccionesTarima(void *arg) {
 				}
 				pthread_mutex_unlock(&semaforoFuente);
 			}
+
+			
 
 			//Miramos si le toca descansar a los jueces
 			if (atletasAtendidosTarimas[idTarima-1] % 4 == 0) {
@@ -386,6 +406,29 @@ void comprobarPodio(int puntuacion, int id) {
 			}
 		}
 	}
+}
+
+//Metodo de la seña SIGPIPE
+void atletasActuales(int sig){
+	char id[10];
+	char msg[100];
+
+	if(signal(SIGPIPE ,atletasActuales)==SIG_ERR){
+		exit(-1);
+	}
+
+	pthread_mutex_lock(&semaforoLog);
+	sprintf(id, "%d atletas", atletasTotalesActuales);
+	sprintf(msg, "han entrado a la competición hasta el momento.");
+	writeLogMessage(id, msg);
+	pthread_mutex_unlock(&semaforoLog);
+	pthread_mutex_lock(&semaforoLog);
+	sprintf(id, "%d atletas", atletasCompitiendo);
+	sprintf(msg, "estan siendo atendidos en este momento.");
+	writeLogMessage(id, msg);
+	pthread_mutex_unlock(&semaforoLog);
+
+	
 }
 
 //Metodo para escribir en el log
